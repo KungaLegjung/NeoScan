@@ -50,11 +50,6 @@ const groq = new OpenAI({
 const upload = multer({ storage: multer.memoryStorage() });
 
 // --- 4. ROUTES ---
-
-/**
- * POST /analyze
- * This route is now set to Temperature 0 for maximum consistency.
- */
 app.post('/analyze', upload.single('resume'), async (req, res) => {
     try {
         console.log(`Analyzing: ${req.file.originalname} for User: ${req.body.userId || "Anonymous"}...`);
@@ -109,7 +104,6 @@ app.post('/analyze', upload.single('resume'), async (req, res) => {
         res.status(500).json({ error: "Analysis engine failed" });
     }
 });
-
 /**
  * GET /history
  * Fetches previous scans for your sidebar/history list
